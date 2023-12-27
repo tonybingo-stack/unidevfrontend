@@ -4,14 +4,14 @@ interface MyCardProps {
     percentage: number;
     shortText: string;
     longDesc: string;
-    blColor: string;
-    trColor: string;
-  }
+    backgroundcolor: string;
+}
+
 const Card: React.FC<MyCardProps> = (props) => {
     return (
         <>
             <div className="basis-1/4">
-                <div className={`bg-gradient-to-tr from-${props.blColor} to-${props.trColor} h-48 p-8 mb-4`}>
+                <div className={`${props.backgroundcolor} h-48 p-8 mb-4`}>
                     <div className="flex items-end">
                         <p className="text-5xl font-medium">{props.percentage}</p>
                         <p className="text-3xl">%</p>
