@@ -11,7 +11,7 @@ const LoadingBar: React.FC<LoadingBarProps> = ({ width, height, myClass }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox={`0 0 ${myClass} ${height}`}
+      // viewBox={`0 0 ${myClass} ${height}`}
     //   width={width}
     className={`${myClass} text-blue-500`}
       height={height}

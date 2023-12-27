@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AudioPlayer from './audioplayer';
 
 const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -32,11 +33,12 @@ const Header = () => {
           <p className="flex w-full justify-end"></p>
           <div className="">
             <div className="flex justify-between">
-              <input
+              {/* <input
                 type="text"
                 placeholder="Ask me anything..."
                 className="bg-transparent outline-none text-base text-16"
-              ></input>
+              ></input> */}
+              <AudioPlayer />
             </div>
           </div>
         </div>
