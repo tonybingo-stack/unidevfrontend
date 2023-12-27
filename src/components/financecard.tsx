@@ -11,7 +11,7 @@ const FinanceCard: React.FC<{ isVisible: boolean }> = (props) => {
   useEffect(() => {
     const f = async () => {
       // await fetchDataFromBackend();
-      await sleep(5000);
+      await sleep(1000);
       setData({
         data: [
           {
