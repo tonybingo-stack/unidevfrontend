@@ -29,7 +29,7 @@ const Finance = () => {
               </div>
             </div>
             <div className="basis-1/2 mr-4 bg-gradient-to-tr from-custom-pink to-custom-purple text-custom-blue text-5xl items-end flex font-medium p-10">$142, 200</div>
-            <Card backgroundcolor='bg-gradient-to-tr from-custom-redlight to-custom-greenlight'percentage={31} shortText="Current Profit Margin" longDesc="With a healthy profit margin, that may end up a second best month ever" />
+            <Card isDataExist={true} backgroundcolor='bg-gradient-to-tr from-custom-redlight to-custom-greenlight'percentage={31} shortText="Current Profit Margin" longDesc="With a healthy profit margin, that may end up a second best month ever" />
           </div>
         </div>
      </div>

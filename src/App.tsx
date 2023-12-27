@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import Header from './components/header';
@@ -6,17 +6,18 @@ import Finance from './components/finance';
 import Sales from './components/sales';
 import Toast from './components/toast';
 import FinanceCard from './components/financecard';
+import LoadingBar from './components/loadingbar';
 
 function App() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isFinanceCardVisible, setIsFinanceCardVisible] = useState(false);
 
   return (
     <div className='flex flex-col px-96'>
       <Header />
       <Finance />
-      <FinanceCard isVisible={isVisible} />
+      <FinanceCard isVisible={isFinanceCardVisible} />
       <Sales myClass='' />
-      <Toast setFinanceCardVisible={setIsVisible} />
+      <Toast setFinanceCardVisible={setIsFinanceCardVisible} />
     </div>
   );
 }
