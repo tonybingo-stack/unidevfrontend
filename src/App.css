@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+/* FadingComponent.css */
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out; /* Adjust the duration and timing function as needed */
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
