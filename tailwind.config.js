@@ -5,6 +5,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      transitionProperty: {
+        'height': 'height',
+      },
+      transitionDuration: {
+        'slow': '0.8s',
+      },
       colors: {
         transparent: 'transparent',
         current: 'currentColor',

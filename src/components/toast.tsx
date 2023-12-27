@@ -1,5 +1,5 @@
 // Toast.js
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import { AiOutlineExpandAlt } from "react-icons/ai";
 import { FaHistory } from "react-icons/fa";
 import { FaKeyboard } from "react-icons/fa";
@@ -20,88 +20,90 @@ const Toast = () => {
 
     const typeText = async () => {
         setIsVisible(true);
-        
+        await sleep(1000);
+
         for (let index = 0; index <= textStream[0].length; index++) {
-            const renderedText = textStream[0].slice(0,index).split('\n').map((line, index) => (
+            const renderedText = textStream[0].slice(0, index).split('\n').map((line, index) => (
                 <React.Fragment key={index}>
-                {line}
-                <br />
+                    {line}
+                    <br />
                 </React.Fragment>
             ));
             setDisplayedText(renderedText);
-            await sleep(5);
+            await sleep(20);
         }
-    
+
         await sleep(2000);
         for (let index = 0; index <= textStream[1].length; index++) {
-            const renderedText = textStream[1].slice(0,index).split('\n').map((line, index) => (
+            const renderedText = textStream[1].slice(0, index).split('\n').map((line, index) => (
                 <React.Fragment key={index}>
-                {line}
-                <br />
+                    {line}
+                    <br />
                 </React.Fragment>
             ));
             setDisplayedText(renderedText);
-            await sleep(5);
+            await sleep(20);
         }
         await sleep(2000);
-    
+
         for (let index = 0; index <= textStream[2].length; index++) {
-            const renderedText = textStream[2].slice(0,index).split('\n').map((line, index) => (
+            const renderedText = textStream[2].slice(0, index).split('\n').map((line, index) => (
                 <React.Fragment key={index}>
-                {line}
-                <br />
+                    {line}
+                    <br />
                 </React.Fragment>
             ));
             setDisplayedText(renderedText);
-            await sleep(5);
+            await sleep(20);
         }
         await sleep(2000);
-    
+
         for (let index = 0; index <= textStream[3].length; index++) {
-            const renderedText = textStream[3].slice(0,index).split('\n').map((line, index) => (
+            const renderedText = textStream[3].slice(0, index).split('\n').map((line, index) => (
                 <React.Fragment key={index}>
-                {line}
-                <br />
+                    {line}
+                    <br />
                 </React.Fragment>
             ));
             setDisplayedText(renderedText);
-            await sleep(5);
+            await sleep(20);
         }
         await sleep(2000);
-    
+        // here update dashboard
+
         for (let index = 0; index < textStream[4].length; index++) {
-            const renderedText = textStream[4].slice(0,index).split('\n').map((line, index) => (
+            const renderedText = textStream[4].slice(0, index).split('\n').map((line, index) => (
                 <React.Fragment key={index}>
-                {line}
-                <br />
+                    {line}
+                    <br />
                 </React.Fragment>
             ));
             setDisplayedText(renderedText);
-            await sleep(5);
+            await sleep(20);
         }
 
         await sleep(2000);
         setIsVisible(false);
     };
-  
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      typeText();
-    }, 2000);
 
-    return () => clearTimeout(timeoutId);
-  }, []);
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            typeText();
+        }, 4000);
+
+        return () => clearTimeout(timeoutId);
+    }, []);
 
     return (
         <>
             <div className={isVisible ? 'fade-in' : 'fade-out'}>
-                <div className='bg-no-repeat bg-center bg-top bg-[url("./assets/back.svg")] flex flex-col justify-between rounded-xl shadow-2xl fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-white h-80 w-1/3'>
+                <div className='fade-up-down-element bg-no-repeat bg-center bg-top bg-[url("./assets/back.svg")] flex flex-col justify-between rounded-xl shadow-2xl fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-white h-80 w-1/3'>
                     <div className='flex items-start justify-end pr-4'>
                         <div className='rounded-[4px] border border-2 border-gray-400 w-5 h-5 mt-4'>
                             <AiOutlineExpandAlt className='text-gray-500' />
                         </div>
                     </div>
-                    <div className='px-10 text-start text-3xl'>{ displayedText }</div>
+                    <div className='px-10 text-start text-3xl'>{displayedText}</div>
                     <div className='px-10 flex justify-between'>
                         <div className='flex items-center mb-6'>
                             <FaHistory className='mr-2' />
