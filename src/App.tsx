@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 
 import Header from './components/header';
@@ -11,11 +11,11 @@ function App() {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
-    <div className='px-96'>
+    <div className='flex flex-col px-96'>
       <Header />
       <Finance />
       <FinanceCard isVisible={isVisible} />
-      <Sales />
+      <Sales myClass='' />
       <Toast setFinanceCardVisible={setIsVisible} />
     </div>
   );
