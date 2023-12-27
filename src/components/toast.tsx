@@ -4,7 +4,7 @@ import { AiOutlineExpandAlt } from "react-icons/ai";
 import { FaHistory } from "react-icons/fa";
 import { FaKeyboard } from "react-icons/fa";
 
-const Toast = () => {
+const Toast: React.FC<{setFinanceCardVisible:any}> = (props) => {
     const [isVisible, setIsVisible] = useState(false);
     const [displayedText, setDisplayedText] = useState<JSX.Element[]>([]);
 
@@ -13,7 +13,7 @@ const Toast = () => {
         `Certainly, here’s some reasoning: \n\n1. there are 4 new clients that combined could bring additional $20,000 by the end of the year.`,
         `2. There is a good chance of Telus signing the new $40,000 contract, first payment tranche is scheduled at September 25th. \n\n3. There is a good engagement on the last marketing campaign.`,
         `Updating the Dashboard...`,
-        `Done. Shutting down...`,
+        `Done. \n\nShutting down...`,
     ];
 
     const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
@@ -70,8 +70,9 @@ const Toast = () => {
         }
         await sleep(2000);
         // here update dashboard
-
-        for (let index = 0; index < textStream[4].length; index++) {
+        props.setFinanceCardVisible(true);
+        await sleep(1000);
+        for (let index = 0; index <= textStream[4].length; index++) {
             const renderedText = textStream[4].slice(0, index).split('\n').map((line, index) => (
                 <React.Fragment key={index}>
                     {line}
@@ -89,7 +90,7 @@ const Toast = () => {
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             typeText();
-        }, 4000);
+        }, 3000);
 
         return () => clearTimeout(timeoutId);
     }, []);
