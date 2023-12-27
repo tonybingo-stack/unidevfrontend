@@ -11,13 +11,13 @@ const LoadingBar: React.FC<LoadingBarProps> = ({ width, height, myClass }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-    //   viewBox={`0 0 ${width} ${height}`}
+      viewBox={`0 0 ${myClass} ${height}`}
     //   width={width}
+    className={`${myClass} text-blue-500`}
       height={height}
-      className="text-blue-500 w-full"
     >
-      <rect className={`${myClass}`} height={height} fill="#FFFFFF" />
-      <rect className={`${myClass} loading-progress`}  height={height} fill="#D9E0E5" />
+      <rect className={`w-full`} height={height} fill="#FFFFFF" />
+      <rect className={`w-full loading-progress`}  height={height} fill="#D9E0E5" />
     </svg>
   );
 };
