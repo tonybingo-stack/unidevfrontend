@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaBolt } from 'react-icons/fa';
 import Card from "./analyzecard";
 
-const Sales:React.FC<{myClass: string}> = (props) => {
+const Sales: React.FC<{ myClass: string }> = (props) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -73,10 +73,10 @@ const Sales:React.FC<{myClass: string}> = (props) => {
             </div>
           </div>
           <div className="flex gap-2">
-            <Card isDataExist = {true} backgroundcolor='bg-gradient-to-tr from-customcyan to-customsky' percentage={30} shortText="Improved RO1 on ad spend" longDesc="Media buying helped with these results, since it's an important way of attracting clients" />
-            <Card isDataExist = {true} backgroundcolor='bg-gradient-to-tr from-custompink to-custompurple' percentage={50} shortText="More engagement in majority of campains" longDesc="Ads generated significantly more engagement" />
-            <Card isDataExist = {true} backgroundcolor='bg-gradient-to-tr from-customredlight to-customred' percentage={38} shortText="Surge in Website Traffic" longDesc="As a consequence, website visits skyrocketed, boosted by social media engagement" />
-            <Card isDataExist = {true} backgroundcolor='bg-gradient-to-tr from-customredlight to-customgreenlight' percentage={42} shortText="Surge in Social Channel Traffic" longDesc="The Surge extended to social media, where engagement almost exactly followed website visits" />
+            <Card isDataExist={true} backgroundcolor='bg-gradient-to-tr from-customcyan to-customsky' percentage={30} shortText="Improved RO1 on ad spend" longDesc="Media buying helped with these results, since it's an important way of attracting clients" />
+            <Card isDataExist={true} backgroundcolor='bg-gradient-to-tr from-custompink to-custompurple' percentage={50} shortText="More engagement in majority of campains" longDesc="Ads generated significantly more engagement" />
+            <Card isDataExist={true} backgroundcolor='bg-gradient-to-tr from-customredlight to-customred' percentage={38} shortText="Surge in Website Traffic" longDesc="As a consequence, website visits skyrocketed, boosted by social media engagement" />
+            <Card isDataExist={true} backgroundcolor='bg-gradient-to-tr from-customredlight to-customgreenlight' percentage={42} shortText="Surge in Social Channel Traffic" longDesc="The Surge extended to social media, where engagement almost exactly followed website visits" />
           </div>
         </div>
       </div>

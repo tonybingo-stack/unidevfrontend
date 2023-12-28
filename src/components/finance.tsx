@@ -16,8 +16,8 @@ const Finance = () => {
 
   return (
     <>
-     <div className={isVisible ? 'fade-in' : 'fade-out'}>
-       <div className="flex flex-col items-between py-12">
+      <div className={isVisible ? 'fade-in' : 'fade-out'}>
+        <div className="flex flex-col items-between py-12">
           <div className="font-light w-3/5 text-3xl mb-12">Hello Erica, with a week until end of the month, the company is on a way to book sizable revenue</div>
           <div className="flex justify-between">
             <div className="basis-1/4 mr-4  flex justify-between flex-col">
@@ -29,11 +29,10 @@ const Finance = () => {
               </div>
             </div>
             <div className="basis-1/2 mr-4 bg-gradient-to-tr from-custompink to-custompurple text-customblue text-5xl items-end flex font-medium p-10">$142, 200</div>
-            <Card isDataExist={true} backgroundcolor='bg-gradient-to-tr from-customredlight to-customgreenlight'percentage={31} shortText="Current Profit Margin" longDesc="With a healthy profit margin, that may end up a second best month ever" />
+            <Card isDataExist={true} backgroundcolor='bg-gradient-to-tr from-customredlight to-customgreenlight' percentage={31} shortText="Current Profit Margin" longDesc="With a healthy profit margin, that may end up a second best month ever" />
           </div>
         </div>
-     </div>
-
+      </div>
     </>
   );
 };

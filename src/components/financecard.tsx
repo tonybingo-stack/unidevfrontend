@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AnimateHeight from 'react-animate-height';
-
+import { SERVER_URL } from '../constants';
 import Card from "./analyzecard";
 
 interface FinanceCardData {
@@ -17,7 +17,7 @@ const FinanceCard: React.FC<{ isVisible: boolean }> = (props) => {
   useEffect(() => {
     let textStream: string = '';
     const f = async () => {
-      const eventSource = new EventSource('http://localhost:5000/stream-text');
+      const eventSource = new EventSource(`${SERVER_URL}/stream-text`);
 
       eventSource.onmessage = (event) => {
         const message = event.data;

@@ -1,5 +1,6 @@
 // AudioPlayer.js
 import React, { useEffect, useRef } from 'react';
+import { SERVER_URL } from '../constants';
 
 const AudioPlayer = () => {
   const audioRef = useRef();
@@ -7,7 +8,7 @@ const AudioPlayer = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/stream-audio');
+        const response = await fetch(`${SERVER_URL}/stream-audio`);
         const blob = await response.blob();
         const url = URL.createObjectURL(blob);
         audioRef.current.src = url;
@@ -19,7 +20,6 @@ const AudioPlayer = () => {
     fetchData();
 
     return () => {
-      // Cleanup, if needed
     };
   }, []);
 

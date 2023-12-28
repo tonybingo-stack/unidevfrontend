@@ -33,11 +33,6 @@ const Header = () => {
           <p className="flex w-full justify-end"></p>
           <div className="">
             <div className="flex justify-between">
-              {/* <input
-                type="text"
-                placeholder="Ask me anything..."
-                className="bg-transparent outline-none text-base text-16"
-              ></input> */}
               <AudioPlayer />
             </div>
           </div>

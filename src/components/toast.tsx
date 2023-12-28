@@ -4,7 +4,7 @@ import { AiOutlineExpandAlt } from "react-icons/ai";
 import { FaHistory } from "react-icons/fa";
 import { FaKeyboard } from "react-icons/fa";
 
-const Toast: React.FC<{setFinanceCardVisible:any}> = (props) => {
+const Toast: React.FC<{ setFinanceCardVisible: any }> = (props) => {
     const [isVisible, setIsVisible] = useState(false);
     const [displayedText, setDisplayedText] = useState<JSX.Element[]>([]);
 

@@ -22,7 +22,7 @@ module.exports = {
         'silver': '#ecebff',
         'bubble-gum': '#ff77e9',
         'bermuda': '#78dcca',
-        
+
         'custompink': '#EDC1FF',
         'custompurple': '#C2CBFF',
         'customblue': '#1D4ED8',
