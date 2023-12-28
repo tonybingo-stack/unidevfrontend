@@ -3,16 +3,20 @@ import AnimateHeight from 'react-animate-height';
 
 import Card from "./analyzecard";
 
-const FinanceCard: React.FC<{ isVisible: boolean }> = (props) => {
-  const [data, setData] = useState<string>('');
-  const [dataArrived, setDataArrived] = useState<boolean>(false);
-  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+interface FinanceCardData {
+  percent: number;
+  shortText: string;
+  longDesc: string;
+}
 
+const FinanceCard: React.FC<{ isVisible: boolean }> = (props) => {
+  const [data, setData] = useState<FinanceCardData[]>([]);
+  const [dataArrived, setDataArrived] = useState<boolean>(false);
+  const [bgColors, setBgColors] = useState<string[]>([]);
 
   useEffect(() => {
     let textStream: string = '';
     const f = async () => {
-      // await fetchDataFromBackend();
       const eventSource = new EventSource('http://localhost:5000/stream-text');
 
       eventSource.onmessage = (event) => {
@@ -24,42 +28,27 @@ const FinanceCard: React.FC<{ isVisible: boolean }> = (props) => {
         console.error('EventSource failed:', error);
         eventSource.close();
       };
-      
-      await sleep(1000);
-      console.log("here" , textStream);
 
-      setData(textStream);
-      console.log(data);
-      // setData({
-      //   data: [
-      //     {
-      //       percent: 30,
-      //       shortText: "Improved RO1 on ad spend",
-      //       longDesc: "Media buying helped with these results, since it's an important way of attracting clients",
-      //     },
-      //     {
-      //       percent: 50,
-      //       shortText: "More engagement in majority of campains",
-      //       longDesc: "Ads generated significantly more engagement",
-      //     },
-      //     {
-      //       percent: 38,
-      //       shortText: "Surge in Website Traffic",
-      //       longDesc: "As a consequence, website visits skyrocketed, boosted by social media engagement",
-      //     },
-      //     {
-      //       percent: 42,
-      //       shortText: "Surge in Social Channel Traffic",
-      //       longDesc: "The Surge extended to social media, where engagement almost exactly followed website visits",
-      //     },
-      //   ]
-      // });
-      if (props.isVisible) setDataArrived(true);
+      await sleep(3000);
+      try {
+        const jsonData = JSON.parse(textStream);
+        setData(jsonData);
+        setDataArrived(props.isVisible);
+        setBgColors([
+          `bg-gradient-to-tr from-custompink to-custompurple`,
+          `bg-gradient-to-tr from-customcyan to-customsky`,
+          `bg-gradient-to-tr from-customredlight to-customred`,
+          `bg-gradient-to-tr from-custompurple to-customgreenlight`,
+        ]);
+      } catch (error) {
+        console.error('Error parsing JSON:', error);
+      }
     };
 
     f();
   }, [props.isVisible]);
 
+  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
   return (
     <>
@@ -68,10 +57,18 @@ const FinanceCard: React.FC<{ isVisible: boolean }> = (props) => {
         height={props.isVisible ? 'auto' : 0}
       >
         <div className={`flex gap-2`}>
-          <Card isDataExist={dataArrived} backgroundcolor='bg-gradient-to-tr from-custom-cyan to-custom-sky' percentage={30} shortText="Improved RO1 on ad spend" longDesc="Media buying helped with these results, since it's an important way of attracting clients" />
-          <Card isDataExist={dataArrived} backgroundcolor='bg-gradient-to-tr from-custom-pink to-custom-purple' percentage={50} shortText="More engagement in majority of campains" longDesc="Ads generated significantly more engagement" />
-          <Card isDataExist={dataArrived} backgroundcolor='bg-gradient-to-tr from-custom-redlight to-custom-red' percentage={38} shortText="Surge in Website Traffic" longDesc="As a consequence, website visits skyrocketed, boosted by social media engagement" />
-          <Card isDataExist={dataArrived} backgroundcolor='bg-gradient-to-tr from-custom-redlight to-custom-greenlight' percentage={42} shortText="Surge in Social Channel Traffic" longDesc="The Surge extended to social media, where engagement almost exactly followed website visits" />
+          {
+            data.map((card, index) => (
+              <Card
+                key={index}
+                isDataExist={dataArrived}
+                backgroundcolor={bgColors[index]}
+                percentage={card.percent}
+                shortText={card.shortText}
+                longDesc={card.longDesc}
+              />
+            ))
+          }
         </div>
       </AnimateHeight>
     </>

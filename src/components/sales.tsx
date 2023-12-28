@@ -29,7 +29,7 @@ const Sales:React.FC<{myClass: string}> = (props) => {
               </div>
             </div>
 
-            <div className="basis-1/2 mr-4 bg-gradient-to-tr from-custom-cyan to-custom-blue text-white font-medium w-full p-10">
+            <div className="basis-1/2 mr-4 bg-gradient-to-tr from-customcyan to-customblue text-white font-medium w-full p-10">
               <div className="mb-16">
                 <div className="justify-items-start">Number of Clients</div>
                 <div className="flex justify-end text-5xl">88</div>
@@ -50,7 +50,7 @@ const Sales:React.FC<{myClass: string}> = (props) => {
                     <div className="text-zinc-500 text-xs">From analysis of 864 HubSport funnels</div>
                   </div>
                 </div>
-                <div className="basis-1/3 bg-custom-blue p-4 text-5xl text-white">
+                <div className="basis-1/3 bg-customblue p-4 text-5xl text-white">
                   <div className="flex items-end justify-center ">
                     <p className="text-5xl font-medium">18</p>
                     <p className="text-3xl">%</p>
@@ -62,7 +62,7 @@ const Sales:React.FC<{myClass: string}> = (props) => {
                 <div className="basis-2/3 mr-2 flex items-end">
                   <div className="text-base font-light">Time to close a client decreased significantly from a month before</div>
                 </div>
-                <div className="basis-1/3 bg-custom-cyan p-4 text-5xl text-white w-full">
+                <div className="basis-1/3 bg-customcyan p-4 text-5xl text-white w-full">
                   <div className="flex items-end justify-center ">
                     <p className="text-3xl font-medium">18.4</p>
                     <p className="text-xl">h</p>
@@ -73,10 +73,10 @@ const Sales:React.FC<{myClass: string}> = (props) => {
             </div>
           </div>
           <div className="flex gap-2">
-            <Card isDataExist = {true} backgroundcolor='bg-gradient-to-tr from-custom-cyan to-custom-sky' percentage={30} shortText="Improved RO1 on ad spend" longDesc="Media buying helped with these results, since it's an important way of attracting clients" />
-            <Card isDataExist = {true} backgroundcolor='bg-gradient-to-tr from-custom-pink to-custom-purple' percentage={50} shortText="More engagement in majority of campains" longDesc="Ads generated significantly more engagement" />
-            <Card isDataExist = {true} backgroundcolor='bg-gradient-to-tr from-custom-redlight to-custom-red' percentage={38} shortText="Surge in Website Traffic" longDesc="As a consequence, website visits skyrocketed, boosted by social media engagement" />
-            <Card isDataExist = {true} backgroundcolor='bg-gradient-to-tr from-custom-redlight to-custom-greenlight' percentage={42} shortText="Surge in Social Channel Traffic" longDesc="The Surge extended to social media, where engagement almost exactly followed website visits" />
+            <Card isDataExist = {true} backgroundcolor='bg-gradient-to-tr from-customcyan to-customsky' percentage={30} shortText="Improved RO1 on ad spend" longDesc="Media buying helped with these results, since it's an important way of attracting clients" />
+            <Card isDataExist = {true} backgroundcolor='bg-gradient-to-tr from-custompink to-custompurple' percentage={50} shortText="More engagement in majority of campains" longDesc="Ads generated significantly more engagement" />
+            <Card isDataExist = {true} backgroundcolor='bg-gradient-to-tr from-customredlight to-customred' percentage={38} shortText="Surge in Website Traffic" longDesc="As a consequence, website visits skyrocketed, boosted by social media engagement" />
+            <Card isDataExist = {true} backgroundcolor='bg-gradient-to-tr from-customredlight to-customgreenlight' percentage={42} shortText="Surge in Social Channel Traffic" longDesc="The Surge extended to social media, where engagement almost exactly followed website visits" />
           </div>
         </div>
       </div>

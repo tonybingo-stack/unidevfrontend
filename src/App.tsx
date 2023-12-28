@@ -6,7 +6,6 @@ import Finance from './components/finance';
 import Sales from './components/sales';
 import Toast from './components/toast';
 import FinanceCard from './components/financecard';
-import LoadingBar from './components/loadingbar';
 
 function App() {
   const [isFinanceCardVisible, setIsFinanceCardVisible] = useState(false);
