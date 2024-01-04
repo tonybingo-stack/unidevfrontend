@@ -14,7 +14,7 @@ function App() {
     <div className='flex flex-col px-96'>
       <Header />
       <Finance />
-      <FinanceCard isVisible={isFinanceCardVisible} />
+      {isFinanceCardVisible ? <FinanceCard /> : <div></div>}
       <Sales myClass='' />
       <Toast setFinanceCardVisible={setIsFinanceCardVisible} />
     </div>

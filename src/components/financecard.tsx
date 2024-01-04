@@ -9,15 +9,16 @@ interface FinanceCardData {
   longDesc: string;
 }
 
-const FinanceCard: React.FC<{ isVisible: boolean }> = (props) => {
+const FinanceCard = () => {
   const [data, setData] = useState<FinanceCardData[]>([]);
   const [dataArrived, setDataArrived] = useState<boolean>(false);
-  const [bgColors, setBgColors] = useState<string[]>([
+  const [isShow, setIsShow] = useState<boolean>(false);
+  const bgColors: string[] = [
     `bg-gradient-to-tr from-custompink to-custompurple`,
     `bg-gradient-to-tr from-customcyan to-customsky`,
     `bg-gradient-to-tr from-customredlight to-customred`,
     `bg-gradient-to-tr from-custompurple to-customgreenlight`,
-  ]);
+  ];
 
   useEffect(() => {
     const socket = io(SERVER_URL);
@@ -25,49 +26,34 @@ const FinanceCard: React.FC<{ isVisible: boolean }> = (props) => {
     // Connection established
     socket.on('connect', () => {
       console.log('Connected to server');
+      setIsShow(true);
     });
-    socket.emit('message', 'data for finance card');
+    socket.emit('message', 'data-for-finance-card');
     // Receive messages from the server
     socket.on('message', (value) => {
       console.log(`Received message from server: ${value}`);
       const jsonData = JSON.parse(value);
       setData(jsonData);
+      setDataArrived(true);
     });
-
-    const f = async () => {
-      await sleep(2500);
-      setDataArrived(props.isVisible);
-    };
-
-    f();
 
     // Clean up the socket connection on component unmount
     return () => {
       socket.disconnect();
     };
-  }, [props.isVisible]);
-
-  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+  }, []);
 
   return (
     <>
       <AnimateHeight
         duration={500}
-        height={props.isVisible ? 'auto' : 0}
+        height={isShow ? 'auto' : 0}
       >
         <div className={`flex gap-2`}>
-          {
-            data.map((card, index) => (
-              <Card
-                key={index}
-                isDataExist={dataArrived}
-                backgroundcolor={bgColors[index]}
-                percentage={card.percent}
-                shortText={card.shortText}
-                longDesc={card.longDesc}
-              />
-            ))
-          }
+          <Card isDataExist={dataArrived} backgroundcolor={bgColors[0]} percentage={dataArrived ? data[0].percent: 0} shortText={dataArrived ? data[0].shortText : ''} longDesc={dataArrived ? data[0].longDesc : ''} />
+          <Card isDataExist={dataArrived} backgroundcolor={bgColors[1]} percentage={dataArrived ? data[1].percent: 0} shortText={dataArrived ? data[1].shortText : ''} longDesc={dataArrived ? data[1].longDesc : ''} />
+          <Card isDataExist={dataArrived} backgroundcolor={bgColors[2]} percentage={dataArrived ? data[2].percent: 0} shortText={dataArrived ? data[2].shortText : ''} longDesc={dataArrived ? data[2].longDesc : ''} />
+          <Card isDataExist={dataArrived} backgroundcolor={bgColors[3]} percentage={dataArrived ? data[3].percent: 0} shortText={dataArrived ? data[3].shortText : ''} longDesc={dataArrived ? data[3].longDesc : ''} />
         </div>
       </AnimateHeight>
     </>
