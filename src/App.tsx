@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import Header from './components/header';
@@ -8,7 +8,7 @@ import Toast from './components/toast';
 import FinanceCard from './components/financecard';
 
 function App() {
-  const [isFinanceCardVisible, setIsFinanceCardVisible] = useState(false);
+  const [isFinanceCardVisible, setIsFinanceCardVisible] = useState(false)
 
   return (
     <div className='flex flex-col px-96'>

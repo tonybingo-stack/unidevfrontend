@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AnimateHeight from 'react-animate-height';
 import { SERVER_URL } from '../constants';
 import Card from "./analyzecard";
-
+import io from 'socket.io-client';
 interface FinanceCardData {
   percent: number;
   shortText: string;
@@ -12,40 +12,39 @@ interface FinanceCardData {
 const FinanceCard: React.FC<{ isVisible: boolean }> = (props) => {
   const [data, setData] = useState<FinanceCardData[]>([]);
   const [dataArrived, setDataArrived] = useState<boolean>(false);
-  const [bgColors, setBgColors] = useState<string[]>([]);
+  const [bgColors, setBgColors] = useState<string[]>([
+    `bg-gradient-to-tr from-custompink to-custompurple`,
+    `bg-gradient-to-tr from-customcyan to-customsky`,
+    `bg-gradient-to-tr from-customredlight to-customred`,
+    `bg-gradient-to-tr from-custompurple to-customgreenlight`,
+  ]);
 
   useEffect(() => {
-    let textStream: string = '';
+    const socket = io(SERVER_URL);
+
+    // Connection established
+    socket.on('connect', () => {
+      console.log('Connected to server');
+    });
+    socket.emit('message', 'data for finance card');
+    // Receive messages from the server
+    socket.on('message', (value) => {
+      console.log(`Received message from server: ${value}`);
+      const jsonData = JSON.parse(value);
+      setData(jsonData);
+    });
+
     const f = async () => {
-      const eventSource = new EventSource(`${SERVER_URL}/stream-text`);
-
-      eventSource.onmessage = (event) => {
-        const message = event.data;
-        textStream += message;
-      };
-
-      eventSource.onerror = (error) => {
-        console.error('EventSource failed:', error);
-        eventSource.close();
-      };
-
-      await sleep(3000);
-      try {
-        const jsonData = JSON.parse(textStream);
-        setData(jsonData);
-        setDataArrived(props.isVisible);
-        setBgColors([
-          `bg-gradient-to-tr from-custompink to-custompurple`,
-          `bg-gradient-to-tr from-customcyan to-customsky`,
-          `bg-gradient-to-tr from-customredlight to-customred`,
-          `bg-gradient-to-tr from-custompurple to-customgreenlight`,
-        ]);
-      } catch (error) {
-        console.error('Error parsing JSON:', error);
-      }
+      await sleep(2500);
+      setDataArrived(props.isVisible);
     };
 
     f();
+
+    // Clean up the socket connection on component unmount
+    return () => {
+      socket.disconnect();
+    };
   }, [props.isVisible]);
 
   const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));

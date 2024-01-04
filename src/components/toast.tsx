@@ -71,6 +71,7 @@ const Toast: React.FC<{ setFinanceCardVisible: any }> = (props) => {
         await sleep(2000);
         // here update dashboard
         props.setFinanceCardVisible(true);
+
         await sleep(1000);
         for (let index = 0; index <= textStream[4].length; index++) {
             const renderedText = textStream[4].slice(0, index).split('\n').map((line, index) => (
@@ -83,7 +84,7 @@ const Toast: React.FC<{ setFinanceCardVisible: any }> = (props) => {
             await sleep(20);
         }
 
-        await sleep(2000);
+        await sleep(500);
         setIsVisible(false);
     };
 
